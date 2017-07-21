@@ -1,0 +1,26 @@
+{
+    "name": "chrisullyott/human-name-parser",
+    "type": "library",
+    "description": "A human name parser written in PHP.",
+    "homepage": "https://github.com/chrisullyott/human-name-parser",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chris Ullyott",
+            "email": "contact@chrisullyott.com",
+            "homepage": "http://www.chrisullyott.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/chrisullyott/human-name-parser/issues",
+        "source": "https://github.com/chrisullyott/human-name-parser"
+    },
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    }
+}
