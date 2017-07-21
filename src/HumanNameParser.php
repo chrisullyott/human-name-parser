@@ -16,14 +16,14 @@ class HumanNameParser
      *
      * @var string
      */
-    private $fullName;
+    private $nameString;
 
     /**
      * The full name with standard replacements made.
      *
      * @var string
      */
-    private $fullNameClean;
+    private $nameStringClean;
 
     /**
      * The salutation prefix of a name.
@@ -88,7 +88,6 @@ class HumanNameParser
         'Gov.'       => array('governor','governer'),
         'Ofc.'       => array('officer'),
         'Msgr.'      => array('monsignor'),
-        'Sr.'        => array('sister'),
         'Br.'        => array('brother'),
         'Supt.'      => array('superintendent'),
         'Rep.'       => array('representatitve'),
@@ -108,6 +107,7 @@ class HumanNameParser
         'Col.'       => array('colonel'),
         'Gen.'       => array('general'),
         'ArtD.'      => array('doctor of arts'),
+        'D.Div.'     => array('doctor of divinity'),
         'MD.'        => array('doctor of general medicine'),
         'DVM.'       => array('doctor of veterinary medine'),
         'PaedDr.'    => array('doctor of education'),
@@ -213,17 +213,17 @@ class HumanNameParser
         'BSc(Dairy)', 'BSc(MCRM)', 'CEng', 'FCA', 'CFA', 'C.F.A.', 'LLB',
         'LL.B', 'LLM', 'LL.M', 'CA(SA)', 'C.A.', 'CA', 'CPA',  'Solicitor',  'DMS',
         'FIWO', 'CEnv', 'MICE', 'MIWEM', 'B.Com', 'BCom', 'BAcc', 'BA', 'BEc', 'MEc',
-        'HDip', 'B.Bus.', 'E.S.C.P.'
+        'HDip', 'B.Bus.', 'E.S.C.P.', 'D.Div.'
     );
 
     /**
      * Constructor.
      *
-     * @param string $fullName The full name to be parsed
+     * @param string $nameString The full name to be parsed
      */
-    public function __construct($fullName)
+    public function __construct($nameString)
     {
-        $this->fullName = $fullName;
+        $this->nameString = $nameString;
     }
 
     /**
@@ -234,8 +234,7 @@ class HumanNameParser
     public function parse()
     {
         return array(
-            'full'       => $this->fullName,
-            'full_clean' => $this->getFullNameClean(),
+            'full'       => $this->getFullName(),
             'salutation' => $this->getSalutation(),
             'first'      => $this->getFirstName(),
             'middle'     => $this->getMiddleName(),
@@ -245,13 +244,13 @@ class HumanNameParser
     }
 
     /**
-     * Get the original full name.
+     * Get the original full name to be parsed.
      *
      * @return string
      */
-    public function getFullName()
+    public function getNameString()
     {
-        return $this->fullName;
+        return $this->nameString;
     }
 
     /**
@@ -259,15 +258,28 @@ class HumanNameParser
      *
      * @return string
      */
-    public function getFullNameClean()
+    public function getNameStringClean()
     {
-        if (!$this->fullNameClean) {
-            $this->fullNameClean = self::sanitize($this->fullName);
-            $this->fullNameClean = self::rewrite($this->fullNameClean);
-            $this->fullNameClean = ucwords($this->fullNameClean);
+        if (!$this->nameStringClean) {
+            $this->nameStringClean = self::sanitize($this->getNameString());
+            $this->nameStringClean = self::rewrite($this->nameStringClean);
+            $this->nameStringClean = ucwords($this->nameStringClean);
         }
 
-        return $this->fullNameClean;
+        return $this->nameStringClean;
+    }
+
+    public function getFullName()
+    {
+        $parts = array(
+            $this->getSalutation(),
+            $this->getFirstName(),
+            $this->getMiddleName(),
+            $this->getLastName(),
+            $this->getSuffix()
+        );
+
+        return implode(' ', array_filter($parts));
     }
 
     /**
@@ -277,8 +289,8 @@ class HumanNameParser
      */
     public function getSalutation()
     {
-        if (!$this->salutation) {
-            $this->salutation = $this->extractSalutation($this->getFullNameClean());
+        if (is_null($this->salutation)) {
+            $this->salutation = $this->extractSalutation($this->getNameStringClean());
         }
 
         return $this->salutation;
@@ -291,8 +303,8 @@ class HumanNameParser
      */
     public function getFirstName()
     {
-        if (!$this->firstName) {
-            $this->firstName = $this->extractFirstName($this->getFullNameClean());
+        if (is_null($this->firstName)) {
+            $this->firstName = $this->extractFirstName($this->getNameStringClean());
         }
 
         return $this->firstName;
@@ -305,8 +317,8 @@ class HumanNameParser
      */
     public function getMiddleName()
     {
-        if (!$this->middleName) {
-            $this->middleName = $this->extractMiddleName($this->getFullNameClean());
+        if (is_null($this->middleName)) {
+            $this->middleName = $this->extractMiddleName($this->getNameStringClean());
         }
 
         return $this->middleName;
@@ -319,8 +331,8 @@ class HumanNameParser
      */
     public function getLastName()
     {
-        if (!$this->lastName) {
-            $this->lastName = $this->extractLastName($this->getFullNameClean());
+        if (is_null($this->lastName)) {
+            $this->lastName = $this->extractLastName($this->getNameStringClean());
         }
 
         return $this->lastName;
@@ -333,8 +345,8 @@ class HumanNameParser
      */
     public function getSuffix()
     {
-        if (!$this->suffix) {
-            $this->suffix = $this->extractSuffix($this->getFullNameClean());
+        if (is_null($this->suffix)) {
+            $this->suffix = $this->extractSuffix($this->getNameStringClean());
         }
 
         return $this->suffix;
@@ -348,6 +360,10 @@ class HumanNameParser
      */
     private function extractSalutation($string)
     {
+        if ($this->getSuffix()) {
+            $string = str_replace(" {$this->getSuffix()}", '', $string);
+        }
+
         $salutation = '';
 
         $parts = explode(' ', $string);
@@ -404,7 +420,7 @@ class HumanNameParser
         $middle = trim(str_replace($replace, '', $string));
 
         if (strlen(trim($middle, '.')) === 1) {
-            return strtoupper($middle) . '.';
+            return strtoupper(trim($middle, '.')) . '.';
         }
 
         return $middle;
@@ -448,7 +464,8 @@ class HumanNameParser
     }
 
     /**
-     * Extract the suffixes from a name string.
+     * Extract the suffixes from a name string. Start at the end of the name and
+     * match as many suffixes as possible.
      *
      * @param  string $string The sanitized name string to work with
      * @return string
@@ -457,15 +474,23 @@ class HumanNameParser
     {
         $suffix = '';
 
-        $parts = explode(' ', $string);
+        $parts = array_reverse(explode(' ', $string));
         $suffixes = array_merge(self::$lineSuffixes, self::$proSuffixes);
 
         foreach ($parts as $part) {
+            $found = '';
+
             foreach ($suffixes as $s) {
                 if ($part === $s) {
-                    $suffix .= $part . ' ';
+                    $found = $s;
                     break;
                 }
+            }
+
+            if ($found) {
+                $suffix .= $found . ' ';
+            } else {
+                break;
             }
         }
 
@@ -487,7 +512,7 @@ class HumanNameParser
     }
 
     /**
-     * Perform common replacements for prefixes and suffixes.
+     * Perform common replacements.
      *
      * @param  string $string The sanitized name string to work with
      * @return string
@@ -496,14 +521,26 @@ class HumanNameParser
     {
         $string = self::rewritePrefixes($string);
         $string = self::rewriteSuffixes($string);
+        $string = self::rewriteSingleLetters($string);
+
+        return $string;
+    }
+
+    /**
+     * Ensure single letters have a period.
+     *
+     * @param  string $string The name string
+     * @return string
+     */
+    private static function rewriteSingleLetters($string)
+    {
+        $string = preg_replace('/\b([a-z]{1})\b/i', '$1.', $string);
 
         return  preg_replace('/\.+/', '.', $string);
     }
 
     /**
      * Rewrites known salutation prefixes to a standard format.
-     *
-     * "Lieutenant colonel" ==> "Lt. Col."
      *
      * @param  string $string The name string
      * @return string
@@ -515,6 +552,7 @@ class HumanNameParser
         foreach (self::$prefixes as $prefix => $prefixVersions) {
             foreach ($prefixVersions as $prefixVersion) {
                 $pattern = self::getTermPattern($prefixVersion);
+
                 if (preg_match($pattern, $string)) {
                     $matches[$prefix] = $prefixVersion;
                 }
@@ -534,8 +572,6 @@ class HumanNameParser
 
     /**
      * Rewrites known suffixes to a standard format.
-     *
-     * "phd" ==> "PhD"
      *
      * @param  string $string The name string
      * @return string
@@ -560,63 +596,38 @@ class HumanNameParser
      */
     private static function getTermPattern($term)
     {
-        $pattern = '\b' . preg_quote(trim($term, '.')) . '\b';
+        $pattern = '\b' . preg_quote(rtrim($term, '.')) . '\b\.?';
 
         return "/{$pattern}/i";
     }
 
     /**
-     * Order an array by the string length of its keys.
+     * Order an array by the string length of its keys, longest first.
      *
-     * @param  array  $array     The array to operate on
-     * @param  string $direction ASC|DESC
+     * @param  array  $array  The array to operate on
      * @return array
      */
-    private static function orderArrayByKeyLength(array $array, $direction = 'DESC')
+    private static function orderArrayByKeyLength(array $array)
     {
-        uksort($array, self::getCompareMethod($direction));
+        uksort($array, function($a, $b){
+            return strlen($b) - strlen($a);
+        });
 
         return $array;
     }
 
     /**
-     * Order an array by the string length of its values.
+     * Order an array by the string length of its values, longest first.
      *
-     * @param  array  $array     The array to operate on
-     * @param  string $direction ASC|DESC
+     * @param  array  $array  The array to operate on
      * @return array
      */
-    private static function orderArrayByValueLength(array $array, $direction = 'DESC')
+    private static function orderArrayByValueLength(array $array)
     {
-        usort($array, self::getCompareMethod($direction));
+        usort($array, function($a, $b){
+            return strlen($b) - strlen($a);
+        });
 
         return $array;
-    }
-
-    /**
-     * Get the name of the appropriate string comparison method.
-     *
-     * @param  string $direction ASC|DESC
-     * @return string
-     */
-    private static function getCompareMethod($direction = 'ASC')
-    {
-        return 'self::lengthCompare' . ucfirst(strtolower($direction));
-    }
-
-    /**
-     * Compare the length of two strings.
-     */
-    private static function lengthCompareAsc($a, $b)
-    {
-        return strlen($a) - strlen($b);
-    }
-
-    /**
-     * Compare the length of two strings.
-     */
-    private static function lengthCompareDesc($a, $b)
-    {
-        return strlen($b) - strlen($a);
     }
 }
