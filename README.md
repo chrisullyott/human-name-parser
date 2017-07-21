@@ -10,7 +10,7 @@ Include in your project, or, install with Composer:
 
 ```
 "require": {
-    "chrisullyott/php-ftp": "dev-master"
+    "chrisullyott/human-name-parser": "dev-master"
 },
 "repositories": [
     {
