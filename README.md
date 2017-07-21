@@ -34,12 +34,11 @@ $result = $parser->parse();
 ```
 Array
 (
-    [full] => Doctor Martin luther King Jr
-    [full_clean] => Dr. Martin Luther King Jr.
+    [full]       => Dr. Martin Luther King Jr.
     [salutation] => Dr.
-    [first] => Martin
-    [middle] => Luther
-    [last] => King
-    [suffix] => Jr.
+    [first]      => Martin
+    [middle]     => Luther
+    [last]       => King
+    [suffix]     => Jr.
 )
 ```
