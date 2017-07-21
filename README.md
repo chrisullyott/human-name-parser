@@ -4,6 +4,22 @@ A human name parser written in PHP.
 
 Based on Josh Fraser's [PHP-Name-Parser](https://github.com/joshfraser/PHP-Name-Parser).
 
+### Installation
+
+Include in your project, or, install with Composer:
+
+```
+"require": {
+    "chrisullyott/php-ftp": "dev-master"
+},
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/chrisullyott/human-name-parser"
+    }
+]
+```
+
 ### Parsing a name
 
 ```
