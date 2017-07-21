@@ -254,7 +254,7 @@ class HumanNameParser
     }
 
     /**
-     * Get the full name with standard replacements made.
+     * Get the original name with standard cleanups applied.
      *
      * @return string
      */
@@ -268,7 +268,12 @@ class HumanNameParser
 
         return $this->nameStringClean;
     }
-
+    
+    /**
+     * Get the full, formatted name.
+     *
+     * @var array
+     */
     public function getFullName()
     {
         $parts = array(
