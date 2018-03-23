@@ -9,15 +9,7 @@ Based on Josh Fraser's [PHP-Name-Parser](https://github.com/joshfraser/PHP-Name-
 Include in your project, or, install with Composer:
 
 ```
-"require": {
-    "chrisullyott/human-name-parser": "dev-master"
-},
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/chrisullyott/human-name-parser"
-    }
-]
+composer require chrisullyott/human-name-parser
 ```
 
 ### Parsing a name
