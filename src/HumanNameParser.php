@@ -397,8 +397,9 @@ class HumanNameParser
         if ($this->getSalutation()) {
             $string = str_replace("{$this->getSalutation()} ", '', $string);
         }
+        $nameParts = explode(' ', $string);
 
-        return array_shift(explode(' ', $string));
+        return array_shift($nameParts);
     }
 
     /**
