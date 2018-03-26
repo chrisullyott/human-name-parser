@@ -21,8 +21,6 @@ $parser = new HumanNameParser($name);
 $result = $parser->parse();
 ```
 
-### Example result
-
 ```
 Array
 (
