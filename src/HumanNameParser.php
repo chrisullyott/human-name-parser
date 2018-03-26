@@ -268,7 +268,7 @@ class HumanNameParser
 
         return $this->nameStringClean;
     }
-    
+
     /**
      * Get the full, formatted name.
      *
@@ -527,22 +527,8 @@ class HumanNameParser
     {
         $string = self::rewritePrefixes($string);
         $string = self::rewriteSuffixes($string);
-        $string = self::rewriteSingleLetters($string);
 
         return $string;
-    }
-
-    /**
-     * Ensure single letters have a period.
-     *
-     * @param  string $string The name string
-     * @return string
-     */
-    private static function rewriteSingleLetters($string)
-    {
-        $string = preg_replace('/\b([a-z]{1})\b/i', '$1.', $string);
-
-        return  preg_replace('/\.+/', '.', $string);
     }
 
     /**
