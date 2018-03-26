@@ -130,6 +130,28 @@ class HumanNameParserTest extends PHPUnit_Framework_TestCase
                     'last'       => 'Smith',
                     'suffix'     => 'Ph.D.'
                 )
+            ),
+            array(
+                "D'arcy Elizabeth Wretzky-Brown",
+                array(
+                    'full'       => "D'arcy Elizabeth Wretzky-Brown",
+                    'salutation' => '',
+                    'first'      => "D'arcy",
+                    'middle'     => 'Elizabeth',
+                    'last'       => 'Wretzky-Brown',
+                    'suffix'     => ''
+                )
+            ),
+            array(
+                "Gerard K. O'Neill",
+                array(
+                    'full'       => "Gerard K. O'Neill",
+                    'salutation' => '',
+                    'first'      => 'Gerard',
+                    'middle'     => 'K.',
+                    'last'       => "O'Neill",
+                    'suffix'     => ''
+                )
             )
         );
     }
