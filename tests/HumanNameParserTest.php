@@ -33,6 +33,17 @@ class HumanNameParserTest extends PHPUnit_Framework_TestCase
                 )
             ),
             array(
+                'O Jung-hee',
+                array(
+                    'full'       => 'O Jung-hee',
+                    'salutation' => '',
+                    'first'      => 'O',
+                    'middle'     => '',
+                    'last'       => 'Jung-hee',
+                    'suffix'     => ''
+                )
+            ),
+            array(
                 'Ryland Jones',
                 array(
                     'full'       => 'Ryland Jones',
@@ -40,6 +51,17 @@ class HumanNameParserTest extends PHPUnit_Framework_TestCase
                     'first'      => 'Ryland',
                     'middle'     => '',
                     'last'       => 'Jones',
+                    'suffix'     => ''
+                )
+            ),
+            array(
+                'Ch’oe Yun',
+                array(
+                    'full'       => 'Ch’oe Yun',
+                    'salutation' => '',
+                    'first'      => 'Ch’oe',
+                    'middle'     => '',
+                    'last'       => 'Yun',
                     'suffix'     => ''
                 )
             ),
