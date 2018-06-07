@@ -5,7 +5,7 @@
 
 A human name parser written in PHP.
 
-Based on Josh Fraser's [PHP-Name-Parser](https://github.com/joshfraser/PHP-Name-Parser). Here, I attempted to rewrite the library to be more understandable and maintainable. Just about all of the original features are maintained.
+Based on Josh Fraser's [PHP-Name-Parser](https://github.com/joshfraser/PHP-Name-Parser). Here, I attempted to rewrite the library to be more understandable (at least to myself) and perhaps more maintainable as a result. Just about all of the original features are maintained.
 
 ### Installation
 
