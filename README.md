@@ -17,7 +17,7 @@ $ composer require chrisullyott/human-name-parser
 
 ### Parsing a name
 
-```
+```php
 $name = 'Doctor Martin luther King Jr';
 
 $parser = new HumanNameParser($name);
