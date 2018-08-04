@@ -11,7 +11,7 @@ Based on Josh Fraser's [PHP-Name-Parser](https://github.com/joshfraser/PHP-Name-
 
 Include in your project, or, install with [Composer](https://getcomposer.org/):
 
-```
+```bash
 $ composer require chrisullyott/human-name-parser
 ```
 
