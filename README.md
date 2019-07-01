@@ -1,7 +1,7 @@
 # human-name-parser
 
 [![Latest Stable Version](https://poser.pugx.org/chrisullyott/human-name-parser/v/stable)](https://packagist.org/packages/chrisullyott/human-name-parser)
-[![Monthly Downloads](https://poser.pugx.org/chrisullyott/human-name-parser/downloads)](https://packagist.org/packages/chrisullyott/human-name-parser)
+[![Total Downloads](https://poser.pugx.org/chrisullyott/human-name-parser/downloads)](https://packagist.org/packages/chrisullyott/human-name-parser)
 
 A human name parser written in PHP.
 
