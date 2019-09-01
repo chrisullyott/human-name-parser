@@ -18,10 +18,10 @@ $ composer require chrisullyott/human-name-parser
 ### Parsing a name
 
 ```php
-$name = 'Doctor Martin luther King Jr';
+use ChrisUllyott\HumanNameParser;
 
-$parser = new HumanNameParser($name);
-$result = $parser->parse();
+$parser = new HumanNameParser('Doctor Martin luther King Jr');
+print_r($parser->parse());
 ```
 
 ```

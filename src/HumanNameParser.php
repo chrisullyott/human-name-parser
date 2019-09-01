@@ -9,6 +9,8 @@
  * @author Chris Ullyott <chris@monkdevelopment.com>
  */
 
+namespace ChrisUllyott;
+
 class HumanNameParser
 {
     /**

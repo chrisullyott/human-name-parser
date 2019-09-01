@@ -6,7 +6,9 @@
  * @author Chris Ullyott <chris@monkdevelopment.com>
  */
 
-class HumanNameParserTest extends PHPUnit_Framework_TestCase
+use ChrisUllyott\HumanNameParser;
+
+class HumanNameParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider functionalNameProvider
