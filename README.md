@@ -5,7 +5,9 @@
 
 A human name parser written in PHP.
 
-Based on Josh Fraser's [PHP-Name-Parser](https://github.com/joshfraser/PHP-Name-Parser). Here, I attempted to rewrite the library to be more understandable (at least to myself) and perhaps more maintainable as a result. Just about all of the original features are maintained.
+Based on Josh Fraser's [PHP-Name-Parser](https://github.com/joshfraser/PHP-Name-Parser). I attempted to rewrite the library to be more easily understandable (at least to myself). Nearly all the original features are maintained.
+
+The algorithm first sanitizes a name string, and then breaks it into smaller pieces using a library of professional titles and suffixes.
 
 ### Installation
 
@@ -20,7 +22,7 @@ $ composer require chrisullyott/human-name-parser
 ```php
 use ChrisUllyott\HumanNameParser;
 
-$parser = new HumanNameParser('Doctor Martin luther King Jr');
+$parser = new HumanNameParser('Dr. martin luther king jr');
 print_r($parser->parse());
 ```
 
