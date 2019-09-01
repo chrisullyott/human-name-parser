@@ -67,75 +67,75 @@ class HumanNameParser
      *
      * @var array
      */
-    private static $prefixes = array(
-        'Mr.'        => array('mr', 'mister'),
-        'Ms.'        => array('ms', 'miss'),
-        'Mrs.'       => array('mrs', 'missus', 'missis'),
-        'Dr.'        => array('dr', 'doctor'),
-        'Fr.'        => array('fr', 'father'),
-        'Sr.'        => array('sr', 'sister'),
-        'Sir'        => array('sir'),
-        'Pastor'     => array('pastor'),
-        'Chaplain'   => array('chaplain'),
-        'Elder'      => array('elder'),
-        'Deacon'     => array('deacon'),
-        'Bishop'     => array('bishop'),
-        'Archbishop' => array('archbishop'),
-        'Cardinal'   => array('cardinal'),
-        'Most'       => array('most'),
-        'very'       => array('very'),
-        'Rev.'       => array('reverend', 'rev'),
-        'Hon.'       => array('honorable'),
-        'Pres.'      => array('president'),
-        'Gov.'       => array('governor','governer'),
-        'Ofc.'       => array('officer'),
-        'Msgr.'      => array('monsignor'),
-        'Br.'        => array('brother'),
-        'Supt.'      => array('superintendent'),
-        'Rep.'       => array('representatitve'),
-        'Sen.'       => array('senator'),
-        'Amb.'       => array('ambassador'),
-        'Treas.'     => array('treasurer'),
-        'Sec.'       => array('secretary'),
-        'Pvt.'       => array('private'),
-        'Cpl.'       => array('corporal'),
-        'Sgt.'       => array('sargent'),
-        'Adm.'       => array('administrative', 'administrator'),
-        'Maj.'       => array('major'),
-        'Capt.'      => array('captain'),
-        'Cmdr.'      => array('commander'),
-        'Lt.'        => array('lieutenant'),
-        'Lt. Col.'   => array('lieutenant colonel'),
-        'Col.'       => array('colonel'),
-        'Gen.'       => array('general'),
-        'ArtD.'      => array('doctor of arts'),
-        'D.Div.'     => array('doctor of divinity'),
-        'MD.'        => array('doctor of general medicine'),
-        'DVM.'       => array('doctor of veterinary medine'),
-        'PaedDr.'    => array('doctor of education'),
-        'PharmDr.'   => array('doctor of pharmacy'),
-        'PhDr.'      => array('doctor of philosophy'),
-        'PhMr.'      => array('master of pharmacy'),
-        'RCDr.'      => array('doctor of business studies'),
-        'DSc.'       => array('doctor of science'),
-        'RSDr.'      => array('doctor of socio-political sciences'),
-        'RTDr.'      => array('doctor of technical sciences'),
-        'Th.D.'      => array('doctor of theology'),
-        'ThLic.'     => array('licentiate of theology'),
-        'ThMgr.'     => array('master of theology', 'master of divinity'),
-        'DiS.'       => array('certified specialist'),
-        'Prof.'      => array('prof', 'professor'),
-        'As.'        => array('assistant'),
-        'Odb. As.'   => array('assistant professor'),
-        'Doc.'       => array('associate professor')
-    );
+    private static $prefixes = [
+        'Mr.'        => ['mr', 'mister'],
+        'Ms.'        => ['ms', 'miss'],
+        'Mrs.'       => ['mrs', 'missus', 'missis'],
+        'Dr.'        => ['dr', 'doctor'],
+        'Fr.'        => ['fr', 'father'],
+        'Sr.'        => ['sr', 'sister'],
+        'Sir'        => ['sir'],
+        'Pastor'     => ['pastor'],
+        'Chaplain'   => ['chaplain'],
+        'Elder'      => ['elder'],
+        'Deacon'     => ['deacon'],
+        'Bishop'     => ['bishop'],
+        'Archbishop' => ['archbishop'],
+        'Cardinal'   => ['cardinal'],
+        'Most'       => ['most'],
+        'very'       => ['very'],
+        'Rev.'       => ['reverend', 'rev'],
+        'Hon.'       => ['honorable'],
+        'Pres.'      => ['president'],
+        'Gov.'       => ['governor','governer'],
+        'Ofc.'       => ['officer'],
+        'Msgr.'      => ['monsignor'],
+        'Br.'        => ['brother'],
+        'Supt.'      => ['superintendent'],
+        'Rep.'       => ['representatitve'],
+        'Sen.'       => ['senator'],
+        'Amb.'       => ['ambassador'],
+        'Treas.'     => ['treasurer'],
+        'Sec.'       => ['secretary'],
+        'Pvt.'       => ['private'],
+        'Cpl.'       => ['corporal'],
+        'Sgt.'       => ['sargent'],
+        'Adm.'       => ['administrative', 'administrator'],
+        'Maj.'       => ['major'],
+        'Capt.'      => ['captain'],
+        'Cmdr.'      => ['commander'],
+        'Lt.'        => ['lieutenant'],
+        'Lt. Col.'   => ['lieutenant colonel'],
+        'Col.'       => ['colonel'],
+        'Gen.'       => ['general'],
+        'ArtD.'      => ['doctor of arts'],
+        'D.Div.'     => ['doctor of divinity'],
+        'MD.'        => ['doctor of general medicine'],
+        'DVM.'       => ['doctor of veterinary medine'],
+        'PaedDr.'    => ['doctor of education'],
+        'PharmDr.'   => ['doctor of pharmacy'],
+        'PhDr.'      => ['doctor of philosophy'],
+        'PhMr.'      => ['master of pharmacy'],
+        'RCDr.'      => ['doctor of business studies'],
+        'DSc.'       => ['doctor of science'],
+        'RSDr.'      => ['doctor of socio-political sciences'],
+        'RTDr.'      => ['doctor of technical sciences'],
+        'Th.D.'      => ['doctor of theology'],
+        'ThLic.'     => ['licentiate of theology'],
+        'ThMgr.'     => ['master of theology', 'master of divinity'],
+        'DiS.'       => ['certified specialist'],
+        'Prof.'      => ['prof', 'professor'],
+        'As.'        => ['assistant'],
+        'Odb. As.'   => ['assistant professor'],
+        'Doc.'       => ['associate professor']
+    ];
 
     /**
      * Compound last name terms.
      *
      * @var array
      */
-    private static $compounds = array(
+    private static $compounds = [
         'Da',
         'De',
         'Del',
@@ -160,14 +160,14 @@ class HumanNameParser
         'Vanden',
         'Vere',
         'Von'
-    );
+    ];
 
     /**
      * Ancestry line suffixes.
      *
      * @var array
      */
-    private static $lineSuffixes = array(
+    private static $lineSuffixes = [
         'I',
         'II',
         'III',
@@ -182,14 +182,14 @@ class HumanNameParser
         'Junior',
         'Jr.',
         'Sr.'
-    );
+    ];
 
     /**
      * Professional title suffixes.
      *
      * @var array
      */
-    private static $proSuffixes = array(
+    private static $proSuffixes = [
         'AO', 'B.A.', 'M.Sc', 'BCompt', 'PhD', 'Ph.D.', 'APR', 'RPh', 'PE', 'MD', 'M.D.',
         'MA', 'DMD', 'CME', 'BSc', 'Bsc', 'BSc(hons)', 'Ph.D.', 'BEng', 'M.B.A.', 'MBA',
         'FAICD', 'CM', 'OBC', 'M.B.', 'ChB', 'FRCP', 'FRSC', 'FREng', 'Esq', 'MEng',
@@ -216,7 +216,7 @@ class HumanNameParser
         'LL.B', 'LLM', 'LL.M', 'CA(SA)', 'C.A.', 'CA', 'CPA',  'Solicitor',  'DMS',
         'FIWO', 'CEnv', 'MICE', 'MIWEM', 'B.Com', 'BCom', 'BAcc', 'BA', 'BEc', 'MEc',
         'HDip', 'B.Bus.', 'E.S.C.P.', 'D.Div.'
-    );
+    ];
 
     /**
      * Constructor.
@@ -235,14 +235,14 @@ class HumanNameParser
      */
     public function parse()
     {
-        return array(
+        return [
             'full'       => $this->getFullName(),
             'salutation' => $this->getSalutation(),
             'first'      => $this->getFirstName(),
             'middle'     => $this->getMiddleName(),
             'last'       => $this->getLastName(),
             'suffix'     => $this->getSuffix()
-        );
+        ];
     }
 
     /**
@@ -278,13 +278,13 @@ class HumanNameParser
      */
     public function getFullName()
     {
-        $parts = array(
+        $parts = [
             $this->getSalutation(),
             $this->getFirstName(),
             $this->getMiddleName(),
             $this->getLastName(),
             $this->getSuffix()
-        );
+        ];
 
         return implode(' ', array_filter($parts));
     }
@@ -420,10 +420,10 @@ class HumanNameParser
             $string = str_replace($this->getSuffix(), '', $string);
         }
 
-        $replace = array(
+        $replace = [
             $this->getFirstName(),
             $this->getLastName()
-        );
+        ];
 
         $middle = trim(str_replace($replace, '', $string));
 
@@ -514,7 +514,7 @@ class HumanNameParser
      */
     private static function sanitize($string)
     {
-        $replace = array('/[[:cntrl:]]/', '/\bthe\b/i', '/[,]/', '/\s+/');
+        $replace = ['/[[:cntrl:]]/', '/\bthe\b/i', '/[,]/', '/\s+/'];
 
         return trim(preg_replace($replace, ' ', $string));
     }
@@ -542,7 +542,7 @@ class HumanNameParser
     private static function rewritePrefixes($string)
     {
         // Find matching prefixes.
-        $matches = array();
+        $matches = [];
         foreach (self::$prefixes as $prefix => $prefixVersions) {
             foreach ($prefixVersions as $prefixVersion) {
                 $pattern = self::getTermPattern($prefixVersion);
