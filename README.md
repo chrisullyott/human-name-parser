@@ -44,7 +44,7 @@ Array
 |---|---|
 | getFullName() | _Dr. Martin Luther King Jr._ |
 | getSalutation() | _Dr._ |
-| getFirstName() | Martin |
-| getMiddleName() | Luther |
-| getLastName() | King |
-| getSuffix() | Jr. |
+| getFirstName() | _Martin_ |
+| getMiddleName() | _Luther_ |
+| getLastName() | _King_ |
+| getSuffix() | _Jr._ |
