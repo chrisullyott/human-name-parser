@@ -37,3 +37,14 @@ Array
     [suffix]     => Jr.
 )
 ```
+
+### Methods
+
+| Name | Sample output |
+|---|---|
+| getFullName() | _Dr. Martin Luther King Jr._ |
+| getSalutation() | _Dr._ |
+| getFirstName() | Martin |
+| getMiddleName() | Luther |
+| getLastName() | King |
+| getSuffix() | Jr. |
